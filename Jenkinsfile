@@ -14,7 +14,7 @@ pipeline {
             }
             steps {
                 sh '''
-                aws ecs register-task-definition --family Amazonlinux --cli-input-json taskdef.json
+                aws ecs register-task-definition --family Amazonlinux --cli-input-json taskdef.json --region us-east-1
                 '''
             
             }
