@@ -1,20 +1,32 @@
 pipeline {
     agent any
-
+    environment {
+        TEST = credentials('test')
+    }
     stages {
-        stage('Hello') {
+        stage('W/o Docker') {
             steps {
-                echo 'Hello World'
                 sh '''
-                cat > Dockerfile <<EOF
-FROM python:3.12
-WORKDIR /usr/local/app
-EOF
-docker build -t python .
-docker images
-'''
-
-                
+                   ls -la
+                   touch dpk.txt
+                   echo $TEST
+                   '''
+            }
+            
+        }
+        stage('Hello') {
+            agent {
+                docker {
+                    image 'amazon/aws-cli'
+                    args "--entrypoint=''"
+                    reuseNode true
+                }
+            }
+            steps {
+                sh '''
+                aws ecs register-task-definition --family Amazonlinux --cli-input-json 
+                '''
+            
             }
         }
     }
