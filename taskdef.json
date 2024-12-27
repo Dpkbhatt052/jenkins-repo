@@ -1,0 +1,75 @@
+{
+    "containerDefinitions": [
+        {
+            "name": "amazonlinux",
+            "image": "amazonlinux",
+            "cpu": 0,
+            "memoryReservation": 128,
+            "portMappings": [],
+            "essential": true,
+            "entryPoint": [],
+            "command": [
+                "sleep",
+                "infinity"
+            ],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "stopTimeout": 2,
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/Amazonlinux",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            }
+        },
+        {
+            "name": "nginx",
+            "image": "nginx",
+            "cpu": 0,
+            "portMappings": [],
+            "essential": true,
+            "entryPoint": [],
+            "command": [],
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/Amazonlinux",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            },
+            "healthCheck": {
+                "command": [
+                    "sleep",
+                    "infinity"
+                ],
+                "interval": 30,
+                "timeout": 5,
+                "retries": 3
+            }
+        }
+    ],
+    "family": "Amazonlinux",
+    "taskRoleArn": "arn:aws:iam::034135013680:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::034135013680:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "2048",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    }
+}
