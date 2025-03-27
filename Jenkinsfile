@@ -14,7 +14,7 @@ pipeline {
             }
             steps {
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-login-new', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                      sh '''aws ecs register-task-definition --family Amazonlinux --cli-input-json file://taskdef.json --region us-east-1
+                      sh '''aws ecs register-task-definition --family Amazonlinuxs --cli-input-json file://taskdef.json --region us-east-1
                       '''
 }
             }
