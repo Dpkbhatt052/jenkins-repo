@@ -20,7 +20,7 @@
                 "options": {
                     "awslogs-group": "/ecs/Amazonlinux",
                     "awslogs-region": "us-east-1",
-                    "awslogs-stream-prefix": "ecs"
+                    "awslogs-stream-prefix": "ecs-a"
                 }
             }
         },
